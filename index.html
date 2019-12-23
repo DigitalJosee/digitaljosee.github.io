@@ -1,147 +1,132 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Password Protected</title>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="d/files/favicon.ico" type="image/x-icon">
+    <title>UpToDate 2018</title>
+    <link rel="stylesheet" href="d/files/home.css">
+    <script language="javascript" type="text/javascript" src="d/files/script.js"></script>
+    <script type="text/javascript">
+        var rootElement;
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="noindex, nofollow">
+        var isDesktop = true;
 
-        <style>
-            *,
-            *:after,
-            *:before {
-                box-sizing: border-box;
-            }
-            body,
-            html {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-                font-weight: 300;
-                font-size: 16px;
-                background: #f2f2f2;
-                color: #2D3737;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100%;
-            }
+        window.addEventListener("load", function () {
+            rootElement = document.getElementById("appContainer");
 
-            .protected {
-                background: #fff;
-                -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
-                box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
-                border-radius: 3px;
-                min-width: 500px;
+            initSize();
 
-            }
-            .protected__content {
-                padding: 24px 28px;
-            }
-            .protected__content__heading {
-                font-size: 16px;
-                font-weight: 500;
-                margin: 0 0 12px;
-                line-height: 1;
-            }
-            .protected__alert {
-                display: none;
-                border-bottom: 1px solid transparent;
-                border-radius: 3px 3px 0 0;
-                padding: 12px 14px;
-                color: #a94442;
-                background-color: #f2dede;
-                border-color: #ebccd1;
-            }
-            .protected__content__input {
-                display: block;
-                border: solid 1px #ccc;
-                padding: 12px 14px;
-                -webkit-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
-                box-shadow: 0 2px 3px 0 rgba(0,0,0,0.1);
-                font-size: 16px;
-                width: 100%;
-                border-radius: 3px;
+            adjustForSize();
 
-                margin-bottom: 12px;
+            setLinks();
+        });
+        window.addEventListener("resize", function () {
+            adjustForSize();
+        });
+
+        function adjustForSize() {
+            isDesktop = chkIsDesktop();
+            rootElement.classList.toggle("isDesktop", isDesktop);
+        };
+
+        function onTextInput(element, event) {
+            if (event.charCode == 13) {
+                submitSearch(element);
             }
-            .protected__content__input:focus {
-                outline: none;
-                border-color: #228843;
-            }
-            .protected__content__btn {
-                background-color: #228843;
-                border-radius: 3px;
-                cursor: pointer;
-                border: none;
-                color: #fff;
-                padding: 12px 14px;
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-                font-weight: 500;
-                font-size: 16px;
+        }
 
-            }
-            .protected__content__btn:hover {
-                background-color: #1C6D36;
-            }
+        function submitSearch(e) {
+            var s = e.value;
+            doSearch(s, "d/");            
+        };
 
-        </style>
+        function clearSearch(e) {
+            e.value = "";
+        };
+    </script>
+</head>
+<body>
+    <noscript>It seems to us that you have your JavaScript disabled on your browser. JavaScript is required in order for the site to behave correctly.  Please enable JavaScript to use the site.</noscript>
+    <div id="appContainer">
+        <div id="header">
+            <div id="utd-menu" class="utd-abs-white-carbon">
+                <div id="utd-menu-content">
+                    <div class="utd-menu-tier1">
+                        <a class="utd-logo">UpToDate®</a>
+                        <img class="flogo" src="d/files/flogo.png">
+                    </div>
+                    <div class="utd-menu-tier3">
+                        <div class="search-bar-ac-unit">
+                            <div class="search-bar-container">
+                                <div class="search-bar">
+                                    <span class="search-icon"></span>
+                                    <div class="utdBarSearchCtrlContainer">
+                                        <input id="tbSearch1" type="text" spellcheck="false" class="utdBarSearchCtrl term searchTerm" placeholder="Search UpToDate" autocomplete="off" autocapitalize="off" autocorrect="off" required="" onkeypress="onTextInput(this, event);">
+                                    </div>
+                                    <span id="clearSearch" outer-class="search-clear" onclick="clearSearch(document.getElementById('tbSearch1'));">
+                                        <i class="fa fa-times-circle"></i>
+                                    </span>
+                                    <span class="newsearch-submit" onclick="submitSearch(document.getElementById('tbSearch1'));"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="utd-menu utd-menu-signin">
+                            <li><img class="flogoM" src="d/files/flogo.png"></li>
 
-    </head>
+                        </ul>
+                        <ul class="utd-menu utd-menu-content">
+                            <li><span class="sep"></span><a href="d/di.htm"><span>Drug Interactions</span></a><i></i></li>
+                            <li><a href="d/toc.htm?path=calculators/categorized"><span>Calculators</span></a><i></i></li>
+                            <li><span class="sep"></span><a href="d/topic.htm?path=practice-changing-updates"><span>PCUs</span></a><i></i></li>
+                            <li><span class="sep"></span><a href="d/toc.htm?path=whats-new"><span>What's New</span></a><i></i></li>
+                            <li><span class="sep"></span><a href="d/toc.htm?path=patient-education"><span>Patient Education</span></a><i></i></li>
+                            <li class="firstnav"><a href="d/toc.htm"><span>Contents</span></a><i></i></li>
+                        </ul>
+                    </div>
 
-    <body>
-
-        <div class="protected">
-            <div class="protected__alert" data-id="alert">You entered the wrong password</div>
-            <div class="protected__content">
-                <h1 class="protected__content__heading">You need a password to continue</h1>
-                <input class="protected__content__input" data-id="password" type="password" placeholder="password"/>
-                <button data-id="button" type="button" class="protected__content__btn">Continue</button>
+                </div>
+				<div class="mob-version">				
+					App Version: 2.0<br>
+					Update Date: 2018/04
+				</div>
             </div>
+
         </div>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
-        <script type="text/javascript">
-            "use strict"
-            var button = document.querySelectorAll('[data-id="button"]')
-            var password = document.querySelectorAll('[data-id="password"]')
+        <div id="utd-main">
+            <div id="new-search">
+                <div class="new-search-box">
+                    <h3><span>Search UpToDate</span></h3>
+                    <div>
+                        <div class="search-bar-ac-unit">
+                            <div class="search-bar-container">
+                                <div class="search-bar">
+                                    <span class="search-icon"></span>
+                                    <div class="utdBarSearchCtrlContainer">
+                                        <input id="tbSearch2" type="text" spellcheck="false" class="utdBarSearchCtrl term searchTerm" autocomplete="off" autocapitalize="off" autocorrect="off" required="" onkeypress="onTextInput(this, event);">
+                                    </div>
+                                    <span class="search-clear" id="clearSearch" control="" outer-class="search-clear" onclick="clearSearch(document.getElementById('tbSearch2'));">
+                                        <i class="fa fa-times-circle">
+                                        </i>
+                                    </span>
+                                    <span class="newsearch-submit" onclick="submitSearch(document.getElementById('tbSearch2'));"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+        </div>
 
-            function login(secret) {
-                var hash = sha1(secret)
-                var url = hash + "/index.html"
-                var alert = document.querySelectorAll('[data-id="alert"]')
-
-                var request = new XMLHttpRequest()
-                request.open('GET', url, true)
-
-                request.onload = function () {
-                    if (request.status >= 200 && request.status < 400) {
-                        window.location = url
-                    } else {
-                        parent.location.hash = hash
-                        alert[0].style.display = 'block'
-                        password[0].setAttribute('placeholder', 'Incorrect password')
-                        password[0].value = ''
-                    }
-                }
-                request.onerror = function () {
-                    parent.location.hash = hash
-                    alert[0].style.display = 'block'
-                    password[0].setAttribute('placeholder', 'Incorrect password')
-                    password[0].value = ''
-                }
-                request.send()
-            }
-
-            button[0].addEventListener("click", function () {
-                login(password[0].value)
-            })
-
-            document.onkeydown = function (e) {
-                e = e || window.event
-                if (e.keyCode == 13) {
-                    login(password[0].value)
-                }
-            }
-        </script>
-    </body>
+        <footer id="utdFooter" class="displayed" style="margin-top: 250px;">
+            <div>
+                <span>
+                    <p class="copyright">©2018 UpToDate, Provided by OpenMed.<br>App Version: 2.0, Update Date: 2018/04</p>					
+                </span>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>
-
